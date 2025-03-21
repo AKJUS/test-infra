@@ -22,7 +22,7 @@ periodics:
       timeout: 1h
     spec:
       containers:
-        - image: public.ecr.aws/docker/library/golang:1.23
+        - image: public.ecr.aws/docker/library/golang:1.24
           env:
             - name: GO_TEST_FLAGS
               value: "-race -count 3"
@@ -62,7 +62,7 @@ periodics:
       timeout: 1h
     spec:
       containers:
-        - image: public.ecr.aws/docker/library/golang:1.23
+        - image: public.ecr.aws/docker/library/golang:1.24
           command:
             - make
           args:
@@ -100,7 +100,7 @@ periodics:
       timeout: 1h
     spec:
       containers:
-        - image: public.ecr.aws/docker/library/golang:1.23
+        - image: public.ecr.aws/docker/library/golang:1.24
           command:
             - make
           args:
@@ -141,9 +141,9 @@ periodics:
         - image: gcr.io/k8s-staging-test-infra/kubekins-e2e:v20250227-3a13bdd784-master
           env:
             - name: E2E_KIND_VERSION
-              value: kindest/node:v1.29.4
+              value: kindest/node:v1.29.14
             - name: BUILDER_IMAGE
-              value: public.ecr.aws/docker/library/golang:1.23
+              value: public.ecr.aws/docker/library/golang:1.24
           command:
             # generic runner script, handles DIND, bazelrc for caching, etc.
             - runner.sh
@@ -156,10 +156,10 @@ periodics:
             privileged: true
           resources:
             requests:
-              cpu: "7"
+              cpu: "10"
               memory: "10Gi"
             limits:
-              cpu: "7"
+              cpu: "10"
               memory: "10Gi"
   - interval: 12h
     name: periodic-kueue-test-e2e-main-1-30
@@ -187,9 +187,9 @@ periodics:
         - image: gcr.io/k8s-staging-test-infra/kubekins-e2e:v20250227-3a13bdd784-master
           env:
             - name: E2E_KIND_VERSION
-              value: kindest/node:v1.30.0
+              value: kindest/node:v1.30.10
             - name: BUILDER_IMAGE
-              value: public.ecr.aws/docker/library/golang:1.23
+              value: public.ecr.aws/docker/library/golang:1.24
           command:
             # generic runner script, handles DIND, bazelrc for caching, etc.
             - runner.sh
@@ -202,10 +202,10 @@ periodics:
             privileged: true
           resources:
             requests:
-              cpu: "7"
+              cpu: "10"
               memory: "10Gi"
             limits:
-              cpu: "7"
+              cpu: "10"
               memory: "10Gi"
   - interval: 12h
     name: periodic-kueue-test-e2e-main-1-31
@@ -233,9 +233,9 @@ periodics:
         - image: gcr.io/k8s-staging-test-infra/kubekins-e2e:v20250227-3a13bdd784-master
           env:
             - name: E2E_KIND_VERSION
-              value: kindest/node:v1.31.0
+              value: kindest/node:v1.31.6
             - name: BUILDER_IMAGE
-              value: public.ecr.aws/docker/library/golang:1.23
+              value: public.ecr.aws/docker/library/golang:1.24
           command:
             # generic runner script, handles DIND, bazelrc for caching, etc.
             - runner.sh
@@ -248,10 +248,10 @@ periodics:
             privileged: true
           resources:
             requests:
-              cpu: "7"
+              cpu: "10"
               memory: "10Gi"
             limits:
-              cpu: "7"
+              cpu: "10"
               memory: "10Gi"
   - interval: 12h
     name: periodic-kueue-test-e2e-main-1-32
@@ -279,9 +279,9 @@ periodics:
         - image: gcr.io/k8s-staging-test-infra/kubekins-e2e:v20250227-3a13bdd784-master
           env:
             - name: E2E_KIND_VERSION
-              value: kindest/node:v1.32.0
+              value: kindest/node:v1.32.3
             - name: BUILDER_IMAGE
-              value: public.ecr.aws/docker/library/golang:1.23
+              value: public.ecr.aws/docker/library/golang:1.24
           command:
             # generic runner script, handles DIND, bazelrc for caching, etc.
             - runner.sh
@@ -294,10 +294,10 @@ periodics:
             privileged: true
           resources:
             requests:
-              cpu: "7"
+              cpu: "10"
               memory: "10Gi"
             limits:
-              cpu: "7"
+              cpu: "10"
               memory: "10Gi"
   - interval: 12h
     name: periodic-kueue-test-e2e-multikueue-main
@@ -325,9 +325,9 @@ periodics:
         - image: gcr.io/k8s-staging-test-infra/kubekins-e2e:v20250227-3a13bdd784-master
           env:
             - name: E2E_KIND_VERSION
-              value: kindest/node:v1.31.2
+              value: kindest/node:v1.32.3
             - name: BUILDER_IMAGE
-              value: public.ecr.aws/docker/library/golang:1.23
+              value: public.ecr.aws/docker/library/golang:1.24
           command:
             # generic runner script, handles DIND, bazelrc for caching, etc.
             - runner.sh
@@ -371,9 +371,9 @@ periodics:
         - image: gcr.io/k8s-staging-test-infra/kubekins-e2e:v20250227-3a13bdd784-master
           env:
             - name: E2E_KIND_VERSION
-              value: kindest/node:v1.31.1
+              value: kindest/node:v1.32.3
             - name: BUILDER_IMAGE
-              value: public.ecr.aws/docker/library/golang:1.23
+              value: public.ecr.aws/docker/library/golang:1.24
           command:
             # generic runner script, handles DIND, bazelrc for caching, etc.
             - runner.sh
@@ -386,10 +386,10 @@ periodics:
             privileged: true
           resources:
             requests:
-              cpu: "7"
+              cpu: "10"
               memory: "10Gi"
             limits:
-              cpu: "7"
+              cpu: "10"
               memory: "10Gi"
   - interval: 12h
     name: periodic-kueue-test-e2e-customconfigs-main
@@ -417,9 +417,9 @@ periodics:
         - image: gcr.io/k8s-staging-test-infra/kubekins-e2e:v20250227-3a13bdd784-master
           env:
             - name: E2E_KIND_VERSION
-              value: kindest/node:v1.31.1
+              value: kindest/node:v1.32.3
             - name: BUILDER_IMAGE
-              value: public.ecr.aws/docker/library/golang:1.23
+              value: public.ecr.aws/docker/library/golang:1.24
           command:
             # generic runner script, handles DIND, bazelrc for caching, etc.
             - runner.sh
@@ -427,6 +427,52 @@ periodics:
             - make
             - kind-image-build
             - test-e2e-customconfigs
+          # docker-in-docker needs privileged mode
+          securityContext:
+            privileged: true
+          resources:
+            requests:
+              cpu: "7"
+              memory: "10Gi"
+            limits:
+              cpu: "7"
+              memory: "10Gi"
+  - interval: 12h
+    name: periodic-kueue-test-e2e-certmanager-main
+    cluster: eks-prow-build-cluster
+    annotations:
+      testgrid-dashboards: sig-scheduling
+      testgrid-tab-name: periodic-kueue-test-e2e-certmanager-main
+      testgrid-alert-email: kueue-alerts@kubernetes.io
+      testgrid-num-failures-to-alert: '1'
+      description: "Run periodic certmanager end to end tests"
+      testgrid-num-columns-recent: '30'
+    labels:
+      preset-dind-enabled: "true"
+      preset-kind-volume-mounts: "true"
+    extra_refs:
+      - org: kubernetes-sigs
+        repo: kueue
+        base_ref: main
+        path_alias: kubernetes-sigs/kueue
+    decorate: true
+    decoration_config:
+      timeout: 1h
+    spec:
+      containers:
+        - image: gcr.io/k8s-staging-test-infra/kubekins-e2e:v20250227-3a13bdd784-master
+          env:
+            - name: E2E_KIND_VERSION
+              value: kindest/node:v1.32.3
+            - name: BUILDER_IMAGE
+              value: public.ecr.aws/docker/library/golang:1.24
+          command:
+            # generic runner script, handles DIND, bazelrc for caching, etc.
+            - runner.sh
+          args:
+            - make
+            - kind-image-build
+            - test-e2e-certmanager
           # docker-in-docker needs privileged mode
           securityContext:
             privileged: true

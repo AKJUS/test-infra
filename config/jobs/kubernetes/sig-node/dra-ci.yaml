@@ -61,7 +61,7 @@ periodics:
               kind delete cluster
           }
           trap atexit EXIT
-          KUBECONFIG=${HOME}/.kube/config ${ginkgo} run --nodes=8 --timeout=24h --silence-skips --force-newlines --no-color --label-filter="Feature: containsAny DynamicResourceAllocation && Feature: isSubsetOf { Alpha, Beta, DynamicResourceAllocation$(for feature in ${features[@]}; do echo , ${feature}; done)} && !Flaky" ${e2e_test} -- -provider=local -report-dir="${ARTIFACTS}" -report-complete-ginkgo -report-complete-junit &
+          KUBECONFIG=${HOME}/.kube/config ${ginkgo} run --nodes=8 --timeout=24h --silence-skips --force-newlines --no-color --label-filter="Feature: containsAny DynamicResourceAllocation && Feature: isSubsetOf { OffByDefault, DynamicResourceAllocation$(for feature in ${features[@]}; do echo , ${feature}; done)} && !Flaky" ${e2e_test} -- -provider=local -report-dir="${ARTIFACTS}" -report-complete-ginkgo -report-complete-junit &
           GINKGO_E2E_PID=$!
           wait "${GINKGO_E2E_PID}"
         env:
@@ -138,7 +138,7 @@ periodics:
               kind delete cluster
           }
           trap atexit EXIT
-          KUBECONFIG=${HOME}/.kube/config ${ginkgo} run --nodes=8 --timeout=24h --silence-skips --force-newlines --no-color --label-filter="Feature: containsAny DynamicResourceAllocation && Feature: isSubsetOf { Alpha, Beta, DynamicResourceAllocation$(for feature in ${features[@]}; do echo , ${feature}; done)} && !Flaky" ${e2e_test} -- -provider=local -report-dir="${ARTIFACTS}" -report-complete-ginkgo -report-complete-junit &
+          KUBECONFIG=${HOME}/.kube/config ${ginkgo} run --nodes=8 --timeout=24h --silence-skips --force-newlines --no-color --label-filter="Feature: containsAny DynamicResourceAllocation && Feature: isSubsetOf { OffByDefault, DynamicResourceAllocation$(for feature in ${features[@]}; do echo , ${feature}; done)} && !Flaky" ${e2e_test} -- -provider=local -report-dir="${ARTIFACTS}" -report-complete-ginkgo -report-complete-junit &
           GINKGO_E2E_PID=$!
           wait "${GINKGO_E2E_PID}"
         env:
@@ -283,7 +283,7 @@ periodics:
       preset-k8s-ssh: "true"
     annotations:
       testgrid-dashboards: sig-node-dynamic-resource-allocation, sig-node-containerd, sig-release-master-informing
-      description: Runs E2E node tests for Dynamic Resource Allocation beta features with containerd
+      description: Runs E2E node tests for Dynamic Resource Allocation beta features with containerd 1.7
       testgrid-alert-email: eduard.bartosh@intel.com, patrick.ohly@intel.com
       fork-per-release: "true"
       fork-per-release-periodic-interval: 24h

@@ -177,8 +177,6 @@ def build_test(cloud='aws',
             cluster_name = f"e2e-{name_hash[0:10]}-{name_hash[12:17]}.tests-kops-aws.k8s.io"
         env['CLUSTER_NAME'] = cluster_name
         env['KUBE_SSH_USER'] = kops_ssh_user
-        if 'KOPS_STATE_STORE' not in env and cloud == "aws":
-            env['KOPS_STATE_STORE'] = 's3://k8s-kops-prow'
         if extra_flags:
             env['KOPS_EXTRA_FLAGS'] = " ".join(extra_flags)
         if irsa and cloud == "aws":
@@ -1378,7 +1376,7 @@ def generate_misc():
 ################################
 def generate_conformance():
     results = []
-    for version in ['1.32', '1.31', '1.30', '1.29']:
+    for version in ['1.32', '1.31', '1.30']:
         results.append(
             build_test(
                 cloud='aws',
@@ -1836,7 +1834,7 @@ def generate_versions():
 ######################
 def generate_pipeline():
     results = []
-    for version in ['master', '1.31', '1.30']:
+    for version in ['master', '1.32', '1.31', '1.30']:
         branch = version if version == 'master' else f"release-{version}"
         publish_version_marker = f"gs://k8s-staging-kops/kops/releases/markers/{branch}/latest-ci-updown-green.txt"
         kops_version = f"https://storage.googleapis.com/k8s-staging-kops/kops/releases/markers/{branch}/latest-ci.txt"
@@ -2382,8 +2380,16 @@ def generate_presubmits_e2e():
         ),
         presubmit_test(
             name='presubmit-kops-aws-boskos-kubetest2',
+            build_cluster="eks-prow-build-cluster",
             always_run=False,
             use_boskos=True,
+            distro="u2404arm64",
+            focus_regex=r'\[Conformance\]|\[NodeConformance\]',
+            skip_regex=r'\[Slow\]|\[Serial\]|\[Flaky\]',
+            extra_flags=[
+                "--master-size=c8g.xlarge",
+            ],
+            extra_dashboards=["kops-misc"],
         ),
 
         presubmit_test(
